@@ -1,16 +1,14 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <rasp></rasp>
+  </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import rasp from './components/rasp.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { rasp }
 }
 </script>
 
@@ -22,5 +20,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: rgb(20, 20, 20);
 }
 </style>
