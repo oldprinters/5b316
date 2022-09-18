@@ -1,10 +1,8 @@
 <template>
-  <div @click="clickOneDay">
-  </div>
     <div :class="['text-center row mt-1', { 'color_dn_off': dN, 'color_dn_on': !dN}]">
       <h5 class="offcanvas-title col" id="offcanvasLabel">{{ rasp.dn }}</h5><span v-if="dN" class="col mt-1" style="color: #bdffbf">{{tDate}}</span>
     </div>
-      <ul class="row">
+      <ul class="row" @click="clickOneDay">
         <li v-for="el in rasp.events" :key="el.time[0]" :class="['position-relative col-12', {'border-top border-success border-4': el.prm}]">
           <time_nk :time="el.time" :lesson="el.lesson && dN" />
           <span :style="{'color':el.color, 'z-index': 101}">{{ el.name }}</span>
@@ -45,7 +43,7 @@ export default {
           if((t > t0) && (t < t1)){
             el.lesson = true
             w1.value = ((t - t0)/1200)/((t1-t0)/60000)
-            console.log("@@@ w1 =", w1.value)
+            setTimeout( () => {w1.value = 0}, 5000)
           } else {
             el.lesson = false
             if(i > 0){

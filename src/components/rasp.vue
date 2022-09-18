@@ -56,7 +56,7 @@ import oneDay from './oneDay'
           {dn: 3, time: ['17:45', '18:45'], name : 'Бассейн', color: '#87cfeb', lesson: false},
           {dn: 5, time: ['17:00', '18:10'], name : 'Хип-хоп', color: '#ffc107', lesson: false},
           {dn: 6, time: ['14:00', '15:00'], name : 'Вокал', color: '#f90e70', lesson: false},
-          // {dn: 7, time: ['17:00', '17:05'], name : 'Test', color: 'red', lesson: false},
+          // {dn: 7, time: ['20:20', '21:05'], name : 'Test', color: 'red', lesson: false},
         ])
 
         const arRasp = ref([
