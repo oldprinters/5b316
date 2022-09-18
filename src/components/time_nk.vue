@@ -1,5 +1,5 @@
 <template>
-    <span :class="{'border border-warning': lesson, 'border-top border-success': prm}">
+    <span>
         {{time_str}}
     </span>
 </template>
@@ -9,7 +9,7 @@ import { timeToStr } from './utils.js'
 import {ref} from 'vue'
 
 export default {
-    props: ['time', 'lesson', 'prm'],
+    props: ['time'],
     setup(props){
       const time_str = ref(timeToStr(props.time))
 

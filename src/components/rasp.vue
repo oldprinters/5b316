@@ -1,17 +1,22 @@
 <template>
     <div class="row">
-        <oneDay v-bind:rasp="one_day" v-for="one_day in arrWeek" v-bind:key="one_day.dn" />
+      <div v-for="one_day in arrWeek" v-bind:key="one_day.dn" ref="od" class="col-12 col-md-4 col-lg-3" >
+        <oneDay :rasp="one_day" />
+      </div>
     </div>
   </template>
 <script>
 /* eslint-disable */
-import {ref} from 'vue'
+import { nextTick, onMounted, ref} from 'vue'
 import {toSimbol, getArTimes, getArTimesStr, insertTime, urTimeText, urTimesToText } from './utils.js'
 import oneDay from './oneDay'
+// import data from 'bootstrap/js/dist/dom/data'
     export default {
       name: 'rasp',
       components: {oneDay},
       setup(){
+        const od = ref([])
+
         const arrWeek = ref([])
         const arTimes = ref([])
         const ur_time = ref([
@@ -51,6 +56,7 @@ import oneDay from './oneDay'
           {dn: 3, time: ['17:45', '18:45'], name : 'Бассейн', color: '#87cfeb', lesson: false},
           {dn: 5, time: ['17:00', '18:10'], name : 'Хип-хоп', color: '#ffc107', lesson: false},
           {dn: 6, time: ['14:00', '15:00'], name : 'Вокал', color: '#f90e70', lesson: false},
+          // {dn: 7, time: ['17:00', '17:05'], name : 'Test', color: 'red', lesson: false},
         ])
 
         const arRasp = ref([
@@ -84,11 +90,23 @@ import oneDay from './oneDay'
               {time: getArTimesStr(el.time), name: el.name, color: el.color, lesson: false}
             )
         });
+        //--------------------------
+        const f1 = () => {
+          let dn = new Date().getDay() - 1
+          if(dn < 0)dn = 6
+          // console.log("@@@ od", od.value[dn])
+          nextTick( () => {
+            od.value[dn].scrollIntoView()
+          })
+        }
+
+        onMounted(f1)
 
         return {
           additional_lessons,
           arRasp,
           arrWeek,
+          od,
           ur_names,
           ur_time
         }

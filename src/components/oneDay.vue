@@ -1,24 +1,25 @@
 <template>
-  <div class="px-0 px-sm-3 col-12 col-md-4 col-lg-3" @click="clickOneDay">
+  <div @click="clickOneDay">
+  </div>
     <div :class="['text-center row mt-1', { 'color_dn_off': dN, 'color_dn_on': !dN}]">
       <h5 class="offcanvas-title col" id="offcanvasLabel">{{ rasp.dn }}</h5><span v-if="dN" class="col mt-1" style="color: #bdffbf">{{tDate}}</span>
     </div>
-    <div class="row" role="button">
-      <ul class="col-12">
-        <li v-for="(el, w1) in rasp.events" :key="el.time[0]" class="position-relative">
-          <time_nk :time="el.time" :lesson="el.lesson && dN" :prm="el.prm" />
-          <span :style="{'color':el.color}">{{ el.name }}</span>
-          <div class="position-absolute translate-middle bg-secondary" :style="[{'z-index': 100}, {'width': w1*10}, {'height': '1.4rem'}, {'top': '50%'}, {'left': w1*5}]"></div>
+      <ul class="row">
+        <li v-for="el in rasp.events" :key="el.time[0]" :class="['position-relative col-12', {'border-top border-success border-4': el.prm}]">
+          <time_nk :time="el.time" :lesson="el.lesson && dN" />
+          <span :style="{'color':el.color, 'z-index': 101}">{{ el.name }}</span>
+          <div 
+            class="position-absolute translate-middle" 
+            :style="[{'z-index': 100}, {'width': w1*2+'%'}, {'height': '1.4rem'}, {'top': '50%'}, {'left': w1+'%'}, {'background-color': '#02979799'}]"
+          >
+          </div>
         </li>
-
       </ul>
-    </div>
-  </div>
 </template>
 <script>
 /* eslint-disable */
 import time_nk from './time_nk.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 export default {
   name: 'oneDay',
@@ -29,25 +30,31 @@ export default {
     const tDn = ref(new Date().getDay() - 1)
     const tTime = ref(false)
     const dN = ref(false)
-    console.log("rasp", props.rasp)
-
+    const w1 = ref(0)
+    // console.log("rasp", props.rasp)
+    if(tDn.value < 0)
+      tDn.value = 6
     //--------------------------
     const clickOneDay = () => {
-      const t = getDate()
-      for(let i in props.rasp.events){
-        const el = props.rasp.events[i]
-        const t0 = new Date(el.time[0])
-        const t1 = new Date(el.time[1])
-        if((t > t0) && (t < t1)){
-          el.lesson = true
-        } else {
-          el.lesson = false
-          if(i > 0){
-            const t1 = new Date(props.rasp.events[i - 1].time[1])
-            if((t > t1) && (t < t0))
-                el.prm = true
-            else
-                el.prm = false
+      if(dN.value){
+        const t = getDate()
+        for(let i in props.rasp.events){
+          const el = props.rasp.events[i]
+          const t0 = new Date(el.time[0])
+          const t1 = new Date(el.time[1])
+          if((t > t0) && (t < t1)){
+            el.lesson = true
+            w1.value = ((t - t0)/1200)/((t1-t0)/60000)
+            console.log("@@@ w1 =", w1.value)
+          } else {
+            el.lesson = false
+            if(i > 0){
+              const t1 = new Date(props.rasp.events[i - 1].time[1])
+              if((t > t1) && (t < t0))
+                  el.prm = true
+              else
+                  el.prm = false
+            }
           }
         }
       }
@@ -59,25 +66,21 @@ export default {
       tDate.value = t.getDate() + '.' + (m > 9? '': '0') + m + '.' + t.getFullYear()
       return t
     }
-
+    // console.log("### tDn, props.rasp.nDN", tDn.value, props.rasp.nDN)
     if(tDn.value == props.rasp.nDN){
       dN.value = true
       getDate()
     }
 
+    onMounted(clickOneDay)
+
     return {
       clickOneDay,
       dN,
-      tDate
+      tDate,
+      w1
     }
   },
-  // data: function(){
-  //   this.dayNed = new Date().getDay()
-  //   // console.log(this.rasp, this.dayNed)
-  //   return {
-  //     dN: (this.dayNed-1 == this.rasp.nDN || (!this.dayNed && this.rasp.nDN==6))
-  //   }
-  // }
 }
 </script>
 <style scoped>

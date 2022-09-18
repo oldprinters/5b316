@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h4 class="text-success">5Б 316 школа СПб</h4>
     <rasp></rasp>
   </div>
 </template>
@@ -17,9 +18,9 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 1rem 0;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   background-color: rgb(20, 20, 20);
 }
 </style>
