@@ -49,9 +49,10 @@ export default {
             el.lesson = false
             if(i > 0){
               const t1 = new Date(props.rasp.events[i - 1].time[1])
-              if((t > t1) && (t < t0))
+              if((t > t1) && (t < t0)){
                   el.prm = true
-              else
+                  setTimeout( () => {el.prm = false}, 5000)
+              } else
                   el.prm = false
             }
           }
