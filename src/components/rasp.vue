@@ -60,8 +60,8 @@ import oneDay from './oneDay'
         ])
 
         const arRasp = ref([
-          {dn: 'Понедельник', 'urok': [{ur: 1, name: 13},{ur: 2, name: 2}, {ur:3, name: 11}, {ur: 4, name: 14}, {ur: 5, name: 2}, {ur: 6, name: 15}, {ur: 7, name: 4}]},
-          {dn: 'Вторник', 'urok': [{ur: 1, name: 0}, {ur: 2, name: 2}, {ur:3, name: 9}, {ur: 4, name: 7}, {ur: 5, name: 4}, {ur: 6, name: 2}, {ur: 7, name: 3}]},
+          {dn: 'Понедельник', 'urok': [{ur: 1, name: 13},{ur: 2, name: 2}, {ur:3, name: 11}, {ur: 4, name: 14}, {ur: 5, name: 6}, {ur: 6, name: 15}, {ur: 7, name: 4}]},
+          {dn: 'Вторник', 'urok': [{ur: 1, name: 0}, {ur: 2, name: 2}, {ur:3, name: 9}, {ur: 4, name: 7}, {ur: 5, name: 4}, {ur: 6, name: 6}, {ur: 7, name: 3}]},
           {dn: 'Среда', 'urok': [{ur: 1, name: 4},{ur: 2, name: 11}, {ur:3, name: 2}, {ur: 4, name: 15}, {ur: 5, name: 16}, {ur: 6, name: 8}]},
           {dn: 'Четверг', 'urok': [{ur: 1, name: 11},{ur: 2, name: 17}, {ur:3, name: 2}, {ur: 4, name: 4}, {ur: 5, name: 11}]},
           {dn: 'Пятница', 'urok': [{ur: 1, name: 2},{ur: 2, name: 9}, {ur:3, name: 4}, {ur: 4, name: 6}, {ur: 5, name: 11}, {ur: 6, name: 3}, {ur: 7, name: 18}]},
