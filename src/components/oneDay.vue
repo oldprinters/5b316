@@ -7,6 +7,7 @@
           <time_nk :time="el.time" :lesson="el.lesson && dN" />
           <span :style="{'color':el.color, 'z-index': 101}">{{ el.name }}</span>
           <div 
+            v-if="el.lesson"
             class="position-absolute translate-middle" 
             :style="[{'z-index': 100}, {'width': w1*2+'%'}, {'height': '1.4rem'}, {'top': '50%'}, {'left': w1+'%'}, {'background-color': '#02979799'}]"
           >
