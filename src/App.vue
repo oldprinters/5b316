@@ -1,10 +1,12 @@
 <template>
   <div class="container">
     <h4 class="text-success">5Б 316 школа СПб</h4>
-    <rasp></rasp>
+    <rasp size="sm"></rasp>
   </div>
 </template>
 <script>
+//    <b-button variant="outline-primary" squared>Настройки</b-button>
+
 import rasp from './components/rasp.vue'
 
 export default {
@@ -12,7 +14,6 @@ export default {
   components: { rasp }
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
